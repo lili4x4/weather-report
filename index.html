@@ -5,8 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
+    <link href="styles/index.css" rel="stylesheet">
 </head>
 <body>
-    
+    <div id="container">
+    <header id="topBar">Real Weather Data:
+        <input id="searchBar" type="text" placeholder="Enter a city">
+        <button id="searchButton">Search</button>
+    </header>
+    <main>
+        <h2 id="city">City, State</h2>
+        <h1 id="weather"><span id="skyEmoji">🌤</span><span id="temp">0°</span><span id="tempEmoji">🙂</span></h1>
+        <section id="changeWeather">
+            <button class="weatherButton" id="hotterButton">⬆️ Hotter</button>
+            <button class="weatherButton" id="colderButton">⬇️ Colder</button><br>
+            <div class="dropdown">
+                <button class="skyDropdown">Sky Situation</button>
+                <div class="dropdown-content">
+                    <option>Sunny</option>
+                    <option>Cloudy</option>
+                    <option>Windy</option>
+                    <option>Raining</option>
+                    <option>Snowing</option>
+                </div>
+                <div class="select_arrow">
+                </div>
+            </div>
+        </section>
+        <footer id="footer">© Weather Report by Liliana Parra</footer>
+    </main>
+    </div>
+    <script src="src/index.js"></script>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
 </body>
 </html>
