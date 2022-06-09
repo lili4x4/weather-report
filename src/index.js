@@ -1,4 +1,22 @@
-'use strict';
+// const axios = require('axios');
+('use strict');
+
+// const getLocationData = (location) => {
+//   return axios
+//     .get('http://127.0.0.1:5000/location', {
+//       params: { q: `${location}` },
+//     })
+//     .then((response) => {
+//       console.log('success');
+//       const lat = response.data[0].lat;
+//       const lon = response.data[0].lon;
+//       console.log(lat);
+//       console.log(lon);
+//     })
+//     .catch((error) => {
+//       console.log('error', error.response.data);
+//     });
+// };
 
 const state = {
   temperature: 0,
@@ -47,6 +65,36 @@ const changeCity = () => {
   city.textContent = searchBar.value;
 };
 
+const getWeather = () => {
+  const searchBar = document.getElementById('searchBar');
+  const location = searchBar.value;
+  axios
+    .get('http://127.0.0.1:5000/location', {
+      params: { q: `${location}` },
+    })
+    .then((response) => {
+      console.log('success');
+      const lat = response.data[0].lat;
+      const lon = response.data[0].lon;
+      console.log(lat);
+      console.log(lon);
+      axios
+        .get('http://127.0.0.1:5000/weather', {
+          params: { lat: `${lat}`, lon: `${lon}` },
+        })
+        .then((response) => {
+          console.log('success');
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log('error', error.response);
+        });
+    })
+    .catch((error) => {
+      console.log('error', error.response.data);
+    });
+};
+
 const registerEventHandlers = () => {
   const hotterButton = document.getElementById('hotterButton');
   hotterButton.addEventListener('click', raiseTemp);
@@ -54,6 +102,8 @@ const registerEventHandlers = () => {
   colderButton.addEventListener('click', lowerTemp);
   const searchBar = document.getElementById('searchBar');
   searchBar.addEventListener('input', changeCity);
+  const searchWeather = document.getElementById('searchButton');
+  searchButton.addEventListener('click', getWeather);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);
