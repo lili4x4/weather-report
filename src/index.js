@@ -65,6 +65,30 @@ const changeCity = () => {
   city.textContent = searchBar.value;
 };
 
+const kelvinToFahrenheit = (k) => {
+  return Math.floor(1.8 * (k - 273) + 32);
+};
+
+const getWeatherByLocation = (lat, lon) => {
+  axios
+    .get('http://127.0.0.1:5000/weather', {
+      params: { lat: `${lat}`, lon: `${lon}` },
+    })
+    .then((response) => {
+      console.log('success');
+      const tempInKelvin = response.data.current.temp;
+      console.log(tempInKelvin);
+      const tempInFahrenheit = kelvinToFahrenheit(tempInKelvin);
+      state.temperature = tempInFahrenheit;
+      const temp = document.getElementById('temp');
+      temp.textContent = `${state.temperature}°`;
+      changeTempDisplay();
+    })
+    .catch((error) => {
+      console.log('error', error.response);
+    });
+};
+
 const getWeather = () => {
   const searchBar = document.getElementById('searchBar');
   const location = searchBar.value;
@@ -76,19 +100,8 @@ const getWeather = () => {
       console.log('success');
       const lat = response.data[0].lat;
       const lon = response.data[0].lon;
-      console.log(lat);
-      console.log(lon);
-      axios
-        .get('http://127.0.0.1:5000/weather', {
-          params: { lat: `${lat}`, lon: `${lon}` },
-        })
-        .then((response) => {
-          console.log('success');
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log('error', error.response);
-        });
+      console.log({ lat, lon });
+      getWeatherByLocation(lat, lon);
     })
     .catch((error) => {
       console.log('error', error.response.data);
