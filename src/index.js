@@ -1,29 +1,11 @@
-// const axios = require('axios');
 ('use strict');
-
-// const getLocationData = (location) => {
-//   return axios
-//     .get('http://127.0.0.1:5000/location', {
-//       params: { q: `${location}` },
-//     })
-//     .then((response) => {
-//       console.log('success');
-//       const lat = response.data[0].lat;
-//       const lon = response.data[0].lon;
-//       console.log(lat);
-//       console.log(lon);
-//     })
-//     .catch((error) => {
-//       console.log('error', error.response.data);
-//     });
-// };
 
 const state = {
   temperature: 0,
+  weather: 'cloudy',
 };
 
 const raiseTemp = () => {
-  console.log('hotter'); //remove later
   state.temperature += 1;
   const temp = document.getElementById('temp');
   temp.textContent = `${state.temperature}°`;
@@ -51,8 +33,24 @@ const changeTempDisplay = () => {
   }
 };
 
+const changeWeatherDisplay = () => {
+  const skySituation = document.getElementById('skySituation').value;
+  const skyEmoji = document.getElementById('skyEmoji');
+  state.weather = skySituation;
+  if (state.weather === 'default') {
+    skyEmoji.textContent = '🌤';
+  } else if (state.weather === 'clear') {
+    skyEmoji.textContent = '☀️';
+  } else if (state.weather === 'cloudy') {
+    skyEmoji.textContent = '☁️';
+  } else if (state.weather === 'raining') {
+    skyEmoji.textContent = '🌧';
+  } else if (state.weather === 'snowing') {
+    skyEmoji.textContent = '❄️';
+  }
+};
+
 const lowerTemp = () => {
-  console.log('colder'); //remove later
   state.temperature -= 1;
   const temp = document.getElementById('temp');
   temp.textContent = `${state.temperature}°`;
@@ -63,6 +61,13 @@ const changeCity = () => {
   const searchBar = document.getElementById('searchBar');
   const city = document.getElementById('city');
   city.textContent = searchBar.value;
+};
+
+const resetCity = () => {
+  const city = document.getElementById('city');
+  const searchBar = document.getElementById('searchBar');
+  city.textContent = 'City, State';
+  searchBar.value = 'Enter a city';
 };
 
 const kelvinToFahrenheit = (k) => {
@@ -115,8 +120,12 @@ const registerEventHandlers = () => {
   colderButton.addEventListener('click', lowerTemp);
   const searchBar = document.getElementById('searchBar');
   searchBar.addEventListener('input', changeCity);
-  const searchWeather = document.getElementById('searchButton');
+  const searchButton = document.getElementById('searchButton');
   searchButton.addEventListener('click', getWeather);
+  const skyDropdown = document.getElementById('skySituation');
+  skyDropdown.addEventListener('click', changeWeatherDisplay);
+  const resetButton = document.getElementById('resetButton');
+  resetButton.addEventListener('click', resetCity);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);

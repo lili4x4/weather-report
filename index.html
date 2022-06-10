@@ -12,6 +12,7 @@
     <header id="topBar">Real Weather Data:
         <input id="searchBar" type="text" placeholder="Enter a city">
         <button id="searchButton">Search</button>
+        <button id="resetButton">Reset</button>
     </header>
     <main>
         <h2 id="city">City, State</h2>
@@ -20,14 +21,15 @@
             <button class="weatherButton" id="hotterButton">⬆️ Hotter</button>
             <button class="weatherButton" id="colderButton">⬇️ Colder</button><br>
             <div class="dropdown">
-                <button class="skyDropdown">Sky Situation</button>
-                <div class="dropdown-content">
-                    <option>Sunny</option>
-                    <option>Cloudy</option>
-                    <option>Windy</option>
-                    <option>Raining</option>
-                    <option>Snowing</option>
-                </div>
+                <select class="skyDropdown" id="skySituation">
+                    <div class="dropdown-content">
+                        <option value="default">Sky Situation</option>
+                        <option value="clear">Clear</option>
+                        <option value="cloudy">Cloudy</option>
+                        <option value="raining">Raining</option>
+                        <option value="snowing">Snowing</option>
+                    </div>
+                </select>
                 <div class="select_arrow">
                 </div>
             </div>
