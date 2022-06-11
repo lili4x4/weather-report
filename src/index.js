@@ -36,17 +36,23 @@ const changeTempDisplay = () => {
 const changeWeatherDisplay = () => {
   const skySituation = document.getElementById('skySituation').value;
   const skyEmoji = document.getElementById('skyEmoji');
+  const body = document.body.style;
   state.weather = skySituation;
   if (state.weather === 'default') {
     skyEmoji.textContent = '🌤';
+    body.backgroundImage = "url('../assets/default-sky.jpg')";
   } else if (state.weather === 'clear') {
     skyEmoji.textContent = '☀️';
+    body.backgroundImage = "url('../assets/clear-sky.avif')";
   } else if (state.weather === 'cloudy') {
     skyEmoji.textContent = '☁️';
+    body.backgroundImage = "url('../assets/cloudy-sky.jpg')";
   } else if (state.weather === 'raining') {
     skyEmoji.textContent = '🌧';
+    body.backgroundImage = "url('../assets/raining-sky.jpg')";
   } else if (state.weather === 'snowing') {
     skyEmoji.textContent = '❄️';
+    body.backgroundImage = "url('../assets/snowing-sky.jpg')";
   }
 };
 

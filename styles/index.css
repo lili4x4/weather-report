@@ -4,10 +4,6 @@
     font-family: 'Lucida Sans', sans-serif;
 }
 
-#topBar, h2, h1, .weatherButton, .dropdown{
-    margin-bottom: 1em;
-}
-
 html, body{
     margin: 0;
     padding: 0;
@@ -17,6 +13,20 @@ html, body{
 #container {
     min-height: 100%;
     position: relative;
+}
+
+body{
+    background-image: url(../assets/default-sky.jpg);
+    background-color: rgb(91, 157, 248);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-position: bottom right,
+    left,
+    right; */
+}
+
+#topBar, h2, h1, .weatherButton, .dropdown{
+    margin-bottom: 1em;
 }
 
 h2, h1, #changeWeather, footer{
