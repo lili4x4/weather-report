@@ -1,5 +1,4 @@
-import 'regenerator-runtime/runtime';
-import axios from 'axios';
+('use strict');
 
 const state = {
   temperature: 0,
@@ -83,7 +82,7 @@ const kelvinToFahrenheit = (k) => {
 
 const getWeatherByLocation = (lat, lon) => {
   axios
-    .get('https://weather-report-proxy-lili4x4.herokuapp.com/weather', {
+    .get('http://127.0.0.1:5000/weather', {
       params: { lat: `${lat}`, lon: `${lon}` },
     })
     .then((response) => {
@@ -105,7 +104,7 @@ const getWeather = () => {
   const searchBar = document.getElementById('searchBar');
   const location = searchBar.value;
   axios
-    .get('https://weather-report-proxy-lili4x4.herokuapp.com/location', {
+    .get('http://127.0.0.1:5000/location', {
       params: { q: `${location}` },
     })
     .then((response) => {
