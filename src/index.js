@@ -42,19 +42,24 @@ const changeWeatherDisplay = () => {
   state.weather = skySituation;
   if (state.weather === 'default') {
     skyEmoji.textContent = '🌤';
-    body.backgroundImage = "url('../assets/default-sky.jpg')";
+    body.backgroundImage =
+      "url('https://lili4x4.github.io/weather-report/assets/default-sky.jpg')";
   } else if (state.weather === 'clear') {
     skyEmoji.textContent = '☀️';
-    body.backgroundImage = "url('../assets/clear-sky.avif')";
+    body.backgroundImage =
+      "url('https://lili4x4.github.io/weather-report//assets/clear-sky.avif')";
   } else if (state.weather === 'cloudy') {
     skyEmoji.textContent = '☁️';
-    body.backgroundImage = "url('../assets/cloudy-sky.jpg')";
+    body.backgroundImage =
+      "url('https://lili4x4.github.io/weather-report//assets/cloudy-sky.jpg')";
   } else if (state.weather === 'raining') {
     skyEmoji.textContent = '🌧';
-    body.backgroundImage = "url('../assets/raining-sky.jpg')";
+    body.backgroundImage =
+      "url('https://lili4x4.github.io/weather-report//assets/raining-sky.jpg')";
   } else if (state.weather === 'snowing') {
     skyEmoji.textContent = '❄️';
-    body.backgroundImage = "url('../assets/snowing-sky.jpg')";
+    body.backgroundImage =
+      "url('https://lili4x4.github.io/weather-report//assets/snowing-sky.jpg')";
   }
 };
 
