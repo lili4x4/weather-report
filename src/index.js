@@ -1,6 +1,6 @@
 ('use strict');
 import '../node_modules/regenerator-runtime/runtime';
-import axios from 'axios';
+import axios from '../node_modules/axios';
 
 const state = {
   temperature: 0,
