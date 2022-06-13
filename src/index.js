@@ -1,5 +1,5 @@
 'use strict';
-import 'regenerator-runtime/runtime';
+import regeneratorRuntime from 'regenerator-runtime';
 import axios from 'axios';
 
 const state = {
