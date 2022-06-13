@@ -5300,7 +5300,17 @@ module.exports.default = axios;
 
 },{"./utils":"node_modules/axios/lib/utils.js","./helpers/bind":"node_modules/axios/lib/helpers/bind.js","./core/Axios":"node_modules/axios/lib/core/Axios.js","./core/mergeConfig":"node_modules/axios/lib/core/mergeConfig.js","./defaults":"node_modules/axios/lib/defaults/index.js","./cancel/CanceledError":"node_modules/axios/lib/cancel/CanceledError.js","./cancel/CancelToken":"node_modules/axios/lib/cancel/CancelToken.js","./cancel/isCancel":"node_modules/axios/lib/cancel/isCancel.js","./env/data":"node_modules/axios/lib/env/data.js","./helpers/toFormData":"node_modules/axios/lib/helpers/toFormData.js","../lib/core/AxiosError":"node_modules/axios/lib/core/AxiosError.js","./helpers/spread":"node_modules/axios/lib/helpers/spread.js","./helpers/isAxiosError":"node_modules/axios/lib/helpers/isAxiosError.js"}],"node_modules/axios/index.js":[function(require,module,exports) {
 module.exports = require('./lib/axios');
-},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"src/index.js":[function(require,module,exports) {
+},{"./lib/axios":"node_modules/axios/lib/axios.js"}],"assets/default-sky.jpg":[function(require,module,exports) {
+module.exports = "/default-sky.32315197.jpg";
+},{}],"assets/clear-sky.avif":[function(require,module,exports) {
+module.exports = "/clear-sky.7a21727f.avif";
+},{}],"assets/cloudy-sky.jpg":[function(require,module,exports) {
+module.exports = "/cloudy-sky.0cf9ccf0.jpg";
+},{}],"assets/raining-sky.jpg":[function(require,module,exports) {
+module.exports = "/raining-sky.b205e8a9.jpg";
+},{}],"assets/snowing-sky.jpg":[function(require,module,exports) {
+module.exports = "/snowing-sky.7a970041.jpg";
+},{}],"src/index.js":[function(require,module,exports) {
 'use strict';
 
 var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
@@ -5312,6 +5322,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var state = {
   temperature: 0,
   weather: 'cloudy'
+};
+var images = {
+  defaultSky: require('../assets/default-sky.jpg'),
+  clearSky: require('../assets/clear-sky.avif'),
+  cloudySky: require('../assets/cloudy-sky.jpg'),
+  rainingSky: require('../assets/raining-sky.jpg'),
+  snowingSky: require('../assets/snowing-sky.jpg')
 };
 
 var raiseTemp = function raiseTemp() {
@@ -5351,19 +5368,19 @@ var changeWeatherDisplay = function changeWeatherDisplay() {
 
   if (state.weather === 'default') {
     skyEmoji.textContent = '🌤';
-    body.backgroundImage = "url('https://lili4x4.github.io/weather-report/assets/default-sky.jpg')";
+    body.backgroundImage = "url('".concat(images.defaultSky, "')");
   } else if (state.weather === 'clear') {
     skyEmoji.textContent = '☀️';
-    body.backgroundImage = "url('https://lili4x4.github.io/weather-report//assets/clear-sky.avif')";
+    body.backgroundImage = "url('".concat(images.clearSky, "')");
   } else if (state.weather === 'cloudy') {
     skyEmoji.textContent = '☁️';
-    body.backgroundImage = "url('https://lili4x4.github.io/weather-report//assets/cloudy-sky.jpg')";
+    body.backgroundImage = "url('".concat(images.cloudySky, "')");
   } else if (state.weather === 'raining') {
     skyEmoji.textContent = '🌧';
-    body.backgroundImage = "url('https://lili4x4.github.io/weather-report//assets/raining-sky.jpg')";
+    body.backgroundImage = "url('".concat(images.rainingSky, "')");
   } else if (state.weather === 'snowing') {
     skyEmoji.textContent = '❄️';
-    body.backgroundImage = "url('https://lili4x4.github.io/weather-report//assets/snowing-sky.jpg')";
+    body.backgroundImage = "url('".concat(images.snowingSky, "')");
   }
 };
 
@@ -5392,7 +5409,7 @@ var kelvinToFahrenheit = function kelvinToFahrenheit(k) {
 };
 
 var getWeatherByLocation = function getWeatherByLocation(lat, lon) {
-  _axios.default.get('http://127.0.0.1:5000/weather', {
+  _axios.default.get('https://weather-report-proxy-lili4x4.herokuapp.com/weather', {
     params: {
       lat: "".concat(lat),
       lon: "".concat(lon)
@@ -5415,7 +5432,7 @@ var getWeather = function getWeather() {
   var searchBar = document.getElementById('searchBar');
   var location = searchBar.value;
 
-  _axios.default.get('http://127.0.0.1:5000/location', {
+  _axios.default.get('https://weather-report-proxy-lili4x4.herokuapp.com/location', {
     params: {
       q: "".concat(location)
     }
@@ -5449,7 +5466,7 @@ var registerEventHandlers = function registerEventHandlers() {
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);
-},{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js","axios":"node_modules/axios/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js","axios":"node_modules/axios/index.js","../assets/default-sky.jpg":"assets/default-sky.jpg","../assets/clear-sky.avif":"assets/clear-sky.avif","../assets/cloudy-sky.jpg":"assets/cloudy-sky.jpg","../assets/raining-sky.jpg":"assets/raining-sky.jpg","../assets/snowing-sky.jpg":"assets/snowing-sky.jpg"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -5477,7 +5494,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51895" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52564" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

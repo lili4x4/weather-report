@@ -7,6 +7,14 @@ const state = {
   weather: 'cloudy',
 };
 
+const images = {
+  defaultSky: require('../assets/default-sky.jpg'),
+  clearSky: require('../assets/clear-sky.avif'),
+  cloudySky: require('../assets/cloudy-sky.jpg'),
+  rainingSky: require('../assets/raining-sky.jpg'),
+  snowingSky: require('../assets/snowing-sky.jpg'),
+};
+
 const raiseTemp = () => {
   state.temperature += 1;
   const temp = document.getElementById('temp');
@@ -42,24 +50,19 @@ const changeWeatherDisplay = () => {
   state.weather = skySituation;
   if (state.weather === 'default') {
     skyEmoji.textContent = '🌤';
-    body.backgroundImage =
-      "url('https://lili4x4.github.io/weather-report/assets/default-sky.jpg')";
+    body.backgroundImage = `url('${images.defaultSky}')`;
   } else if (state.weather === 'clear') {
     skyEmoji.textContent = '☀️';
-    body.backgroundImage =
-      "url('https://lili4x4.github.io/weather-report//assets/clear-sky.avif')";
+    body.backgroundImage = `url('${images.clearSky}')`;
   } else if (state.weather === 'cloudy') {
     skyEmoji.textContent = '☁️';
-    body.backgroundImage =
-      "url('https://lili4x4.github.io/weather-report//assets/cloudy-sky.jpg')";
+    body.backgroundImage = `url('${images.cloudySky}')`;
   } else if (state.weather === 'raining') {
     skyEmoji.textContent = '🌧';
-    body.backgroundImage =
-      "url('https://lili4x4.github.io/weather-report//assets/raining-sky.jpg')";
+    body.backgroundImage = `url('${images.rainingSky}')`;
   } else if (state.weather === 'snowing') {
     skyEmoji.textContent = '❄️';
-    body.backgroundImage =
-      "url('https://lili4x4.github.io/weather-report//assets/snowing-sky.jpg')";
+    body.backgroundImage = `url('${images.snowingSky}')`;
   }
 };
 
@@ -89,7 +92,7 @@ const kelvinToFahrenheit = (k) => {
 
 const getWeatherByLocation = (lat, lon) => {
   axios
-    .get('http://127.0.0.1:5000/weather', {
+    .get('https://weather-report-proxy-lili4x4.herokuapp.com/weather', {
       params: { lat: `${lat}`, lon: `${lon}` },
     })
     .then((response) => {
@@ -111,7 +114,7 @@ const getWeather = () => {
   const searchBar = document.getElementById('searchBar');
   const location = searchBar.value;
   axios
-    .get('http://127.0.0.1:5000/location', {
+    .get('https://weather-report-proxy-lili4x4.herokuapp.com/location', {
       params: { q: `${location}` },
     })
     .then((response) => {
