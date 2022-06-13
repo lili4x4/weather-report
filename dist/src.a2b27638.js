@@ -5313,7 +5313,7 @@ module.exports = "/snowing-sky.7a970041.jpg";
 },{}],"src/index.js":[function(require,module,exports) {
 'use strict';
 
-var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
+require("regenerator-runtime");
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -5494,7 +5494,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52564" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51895" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
