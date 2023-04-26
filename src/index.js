@@ -1,4 +1,5 @@
 ('use strict');
+import axios from 'axios';
 
 const state = {
   temperature: 0,
@@ -82,12 +83,12 @@ const kelvinToFahrenheit = (k) => {
 
 const getWeatherByLocation = (lat, lon) => {
   axios
-    .get('http://127.0.0.1:5000/weather', {
+    .get('https://weather-report-proxy-server.onrender.com/weather', {
       params: { lat: `${lat}`, lon: `${lon}` },
     })
     .then((response) => {
-      console.log('success');
-      const tempInKelvin = response.data.current.temp;
+      console.log('success', response);
+      const tempInKelvin = response.data.main.temp;
       console.log(tempInKelvin);
       const tempInFahrenheit = kelvinToFahrenheit(tempInKelvin);
       state.temperature = tempInFahrenheit;
@@ -104,7 +105,7 @@ const getWeather = () => {
   const searchBar = document.getElementById('searchBar');
   const location = searchBar.value;
   axios
-    .get('http://127.0.0.1:5000/location', {
+    .get('https://weather-report-proxy-server.onrender.com/location', {
       params: { q: `${location}` },
     })
     .then((response) => {
